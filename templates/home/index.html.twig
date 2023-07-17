@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+    <style>
+        #modules-list-bloc {
+            width: 30%;
+            height: 300px;
+            background-color: #AED5F3;
+            border-radius: 10px;
+        }
+
+        #modules-data-bloc {
+            width: 30%;
+            height: 300px;
+            background-color: #AED5F3;
+            border-radius: 10px;
+        }
+
+        #modules-historique-bloc {
+            width: 30%;
+            height: 300px;
+            background-color: #AED5F3;
+            border-radius: 10px;
+        }
+
+        #whole-container{
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .category-title {
+            margin-left: 30%
+        }
+
+        #add-module {
+            height: 30px;
+            background-color: white;
+            border-radius: 15px;
+            margin-left: 15%;
+            width: 60%
+        }
+    </style>
+
+    <div id="whole-container">
+        <div id="modules-list-bloc">
+            <h1 class="category-title">Liste des modules</h1>
+
+            <div id="add-module">
+                <h2>+ Ajouter un module</h2>
+            </div>
+            {% if modules %}
+                {% for module in modules %}
+                    <h3>{{ module.name }}</h3>
+                    <h3>{{ module.status ? 'V' : 'X' }}</h3>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+        <div id="modules-historique-bloc">
+            <h1 class="category-title">Historique</h1>
+        </div>
+
+        <div id="modules-data-bloc">
+            <h1 class="category-title">Données</h1>
+        </div>
+    </div>
+{% endblock %}
