@@ -35,36 +35,54 @@
             margin-left: 30%
         }
 
-        #add-module {
-            height: 30px;
-            background-color: white;
-            border-radius: 15px;
-            margin-left: 15%;
-            width: 60%
-        }
+
     </style>
 
     <div id="whole-container">
         <div id="modules-list-bloc">
-            <h1 class="category-title">Liste des modules</h1>
+            <h2 class="category-title">Liste des modules</h2>
 
-            <div id="add-module">
-                <h2>+ Ajouter un module</h2>
+            <button class="btn btn-light border border-secondary" id="add-module">
+                <p>+ Ajouter un module</p>
+            </button>
+
+            <div id="add-bloc" class="d-none bg-light w-75 rounded">
+                <input id="input-name" type="text" placeholder="Nom du module...">
+                <button class="btn btn-light" id="valid-add">
+                    <p>Ajouter</p>
+                </button>
+                <button class="btn btn-light" id="valid-cancel">
+                    <p>Annuler</p>
+                </button>
             </div>
-            {% if modules %}
+
+            {% if modules is defined %}
                 {% for module in modules %}
-                    <h3>{{ module.name }}</h3>
-                    <h3>{{ module.status ? 'V' : 'X' }}</h3>
+                    <div>
+                        <h4>{{ module.name }}</h4>
+                        <h4>{{ module.status ? 'V' : 'X' }}</h4>
+                        <button class="btn btn-light valid-delete" data-id="{{ module.id }}">X</button>
+                    </div>
                 {% endfor %}
             {% endif %}
         </div>
 
         <div id="modules-historique-bloc">
-            <h1 class="category-title">Historique</h1>
+            <h2 class="category-title">Historique</h2>
+            <div>
+                {% if workHistories is defined %}
+                    {% for workHistory in workHistories %}
+                        <div>
+                            <p>{{ workHistory.moduleid.name }}</p>
+                            <p>{{ workHistory.status ? 'V' : 'X' }}</p>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
         </div>
 
         <div id="modules-data-bloc">
-            <h1 class="category-title">Données</h1>
+            <h2 class="category-title">Données</h2>
         </div>
     </div>
 {% endblock %}
